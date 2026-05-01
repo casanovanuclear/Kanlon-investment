@@ -350,16 +350,7 @@ let PID = 200;
 let loans = [];
 
 try { loans = JSON.parse(localStorage.getItem('kanlon_v3') || 'null') || []; } catch(e) {}
-
-if (!loans.length) {
-  loans = [
-    {id:1, name:"Michael Githae Mwangi", phone:"0791314021", principal:12000, fee:0, daily:400, start:"2026-04-05", payments:[{amount:1500,date:"2026-04-06",note:"M-Pesa ref"}], gname:"", gphone:""},
-    {id:2, name:"Ann Njoki Gachau", phone:"0794418530", principal:12000, fee:0, daily:400, start:"2026-04-01", payments:[{amount:2400,date:"2026-04-05",note:""}], gname:"", gphone:""},
-    {id:3, name:"Zimalon Nduta Njau", phone:"0707255242", principal:14400, fee:0, daily:7200, start:"2026-03-01", payments:[{amount:13400,date:"2026-04-02",note:"Cash"}], gname:"", gphone:""},
-    {id:4, name:"Teresiah Gitembei", phone:"0724473309", principal:8600, fee:0, daily:400, start:"2026-03-15", payments:[{amount:4920,date:"2026-04-01",note:""}], gname:"Joseph Gitembei", gphone:"0722334455"}
-  ];
-  sv();
-}
+ 
 PID = Math.max(...loans.map(l=>l.id), 199) + 1;
 
 let curPay = null, curBulk = null, curDet = null;
