@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kanlon Investments</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -21,17 +21,17 @@
   --text:#eee;--text2:#aaa;--text3:#666;--input-bg:#2a2a2a;--secondary-bg:#2a2a2a;}
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center}
-.app{width:100%;max-width:430px;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;position:relative}
+.app{width:100%;max-width:100%;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;position:relative}
 .topbar{background:var(--card);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);flex-shrink:0;position:sticky;top:0;z-index:10}
-.topbar-title{font-size:16px;font-weight:600;color:var(--text)}
+.topbar-title{font-size:clamp(14px,2vw,18px);font-weight:600;color:var(--text)}
 .icon-btn{width:32px;height:32px;border-radius:50%;border:0.5px solid var(--border2);background:var(--secondary-bg);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--text2)}
 .tabs-wrap{background:var(--bg);padding:10px 12px 0;flex-shrink:0;position:sticky;top:42px;z-index:9}
-.tabs{display:flex;background:var(--secondary-bg);border-radius:12px;padding:3px;gap:2px}
-.tab{flex:1;padding:8px 0;text-align:center;font-size:13px;border-radius:9px;cursor:pointer;color:var(--text2);border:none;background:transparent;font-family:inherit;font-weight:400;transition:all .15s}
+.tabs{display:flex;background:var(--secondary-bg);border-radius:12px;padding:3px;gap:2px;max-width:700px;margin:0 auto;width:100%}
+.tab{flex:1;padding:8px 0;text-align:center;font-size:clamp(12px,1.5vw,14px);border-radius:9px;cursor:pointer;color:var(--text2);border:none;background:transparent;font-family:inherit;font-weight:400;transition:all .15s}
 .tab.active{background:var(--card);color:var(--blue);font-weight:500;border:0.5px solid var(--border)}
-.content{padding:12px;flex:1;overflow-y:auto}
-.page-title{font-size:21px;font-weight:600;color:var(--text);margin-bottom:2px}
-.page-sub{font-size:13px;color:var(--text2);margin-bottom:14px}
+.content{padding:clamp(10px,2vw,20px);flex:1;overflow-y:auto;max-width:900px;margin:0 auto;width:100%}
+.page-title{font-size:clamp(18px,2.5vw,26px);font-weight:600;color:var(--text);margin-bottom:2px}
+.page-sub{font-size:clamp(12px,1.4vw,14px);color:var(--text2);margin-bottom:14px}
 .search-row{display:flex;gap:8px;margin-bottom:12px;align-items:center}
 .search-box{flex:1;display:flex;align-items:center;gap:8px;background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:0 10px;height:38px}
 .search-box input{border:none;background:transparent;font-size:13px;color:var(--text);outline:none;flex:1;font-family:inherit}
@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* Modals */
 .modal-wrap{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:200}
-.modal-sheet{background:var(--card);border-radius:16px 16px 0 0;padding:20px 18px 32px;width:100%;max-width:430px;max-height:92vh;overflow-y:auto}
+.modal-sheet{background:var(--card);border-radius:16px 16px 0 0;padding:20px 18px 32px;width:100%;max-width:620px;max-height:92vh;overflow-y:auto}
 .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .modal-title{font-size:17px;font-weight:600;color:var(--text)}
 .modal-close{width:28px;height:28px;border:none;background:var(--secondary-bg);border-radius:50%;font-size:16px;cursor:pointer;color:var(--text2);font-family:inherit;line-height:1}
@@ -146,8 +146,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 22px;border-radius:22px;font-size:13px;z-index:999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .25s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
 .toast.show{opacity:1}
 /* Sync indicator */
-.sync-bar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--blue);color:#fff;font-size:11px;font-weight:500;text-align:center;padding:4px;z-index:999;transition:opacity .3s;opacity:0;pointer-events:none}
+.sync-bar{position:fixed;top:0;left:0;width:100%;background:var(--blue);color:#fff;font-size:11px;font-weight:500;text-align:center;padding:4px;z-index:999;transition:opacity .3s;opacity:0;pointer-events:none}
 .sync-bar.show{opacity:1}
+
+/* ── Tablet (600px+) ───────────────────────────────────────────────── */
+@media(min-width:600px){
+  .tabs-wrap{padding:12px 20px 0}
+  .loan-card{padding:18px}
+  .amounts-row{flex-wrap:nowrap}
+  .card-actions .act-btn{height:38px;font-size:13px}
+  .hero-val{font-size:36px}
+  .metric-val{font-size:22px}
+  .rpt-val{font-size:28px}
+  .detail-stat-val{font-size:17px}
+  .form-input{height:46px;font-size:15px}
+  .modal-sheet{padding:24px 28px 36px}
+}
+
+/* ── Desktop (900px+) ──────────────────────────────────────────────── */
+@media(min-width:900px){
+  body{align-items:flex-start}
+  .app{max-width:100%}
+  .topbar{padding:14px 32px}
+  .tabs-wrap{padding:14px 32px 0}
+  .content{padding:20px 32px;max-width:1100px}
+  /* Two-column loan card grid on desktop */
+  #loans-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  #loans-grid .loan-card{margin-bottom:0}
+  /* Dashboard metrics 3-column */
+  .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .dash-grid .metric-card{margin-bottom:0}
+  .hero-card{padding:28px}
+  .hero-val{font-size:40px}
+  .metric-val{font-size:24px}
+  /* Modal centered on desktop, not bottom sheet */
+  .modal-wrap{align-items:center}
+  .modal-sheet{border-radius:16px;max-width:560px;max-height:85vh}
+  .page-title{font-size:28px}
+  .topbar-title{font-size:20px}
+}
+
+/* ── Large screens (1200px+) ───────────────────────────────────────── */
+@media(min-width:1200px){
+  .content{max-width:1200px}
+  #loans-grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 <body>
@@ -328,8 +371,9 @@ function renderLoans(mc) {
     <button class="new-btn" onclick="openCreateModal()">+ New</button>
   </div>`;
 
-  if (!loans.length) { h += `<div class="empty-state">No loans found</div>`; }
+  if (!loans.length) { h += `<div class="empty-state">No loans found</div></div>`; mc.innerHTML = h; return; }
 
+  h += `<div id="loans-grid">`;
   loans.forEach(loan => {
     const c = loanCalc(loan);
     const isOverdue = c.overdueDays > 0 && !c.isComplete;
@@ -366,7 +410,7 @@ function renderLoans(mc) {
     </div>`;
   });
 
-  h += `</div>`;
+  h += `</div></div>`;
   mc.innerHTML = h;
 }
 
@@ -393,7 +437,7 @@ function renderDashboard(mc) {
     <div class="hero-val">${fmt(totalToCollect)}</div>
     <div class="hero-sub">Across <strong>${activeLoans.length}</strong> active loan${activeLoans.length !== 1 ? 's' : ''}</div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+  <div class="dash-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
     <div class="metric-card" style="margin-bottom:0">
       <div class="metric-icon" style="background:#E6F1FB">💰</div>
       <div class="metric-name">Total Principal</div>
@@ -404,8 +448,6 @@ function renderDashboard(mc) {
       <div class="metric-name">Expected Profit</div>
       <div class="metric-val" style="font-size:16px">${fmt(expectedProfit)}</div>
     </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
     <div class="metric-card" style="margin-bottom:0">
       <div class="metric-icon" style="background:#EEEDFE">💳</div>
       <div class="metric-name">Total Collected</div>
@@ -416,8 +458,6 @@ function renderDashboard(mc) {
       <div class="metric-name">Total Fees</div>
       <div class="metric-val" style="font-size:16px">${fmt(totalFees)}</div>
     </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
     <div class="metric-card" style="margin-bottom:0">
       <div class="metric-icon" style="background:#E1F5EE">✅</div>
       <div class="metric-name">Completed Loans</div>
